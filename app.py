@@ -1,39 +1,15 @@
-from flask import Flask, request
+from flask import Flask, render_template
 from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 
 @app.route("/")
-def hello_world():
-    return "Hello, Flask is running"
-
-
-@app.route("/home")
-def hello():
-    return "from home"
-
-
-@app.route("/greet/<name>")  # url processor or dynamic urls
-def greet(name):
-    return f"Hello {name}"
-
-
-@app.route("/add/<int:number1>/<int:number2>")
-def add(number1, number2):
-    return f"{number1} + {number2} = {number1 + number2}"
-
-
-@app.route("/handle_url_parameter")
-def handle():
-    if "greetings" in request.args.keys() and "name" in request.args.keys():
-        greetings = request.args["greetings"]
-        name = request.args["name"]
-        return f"{greetings}, {name}"
-    else:
-        return "Something is missing"
+def index():
+    mylist = [13, 12, 43, 55, 98, 75, 33, 239, 21]
+    return render_template("index.html", mylist=mylist)
 
 
 if __name__ == "__main__":
