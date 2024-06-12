@@ -132,5 +132,3 @@ dmypy.json
 # profiling data
 prof/
 
-# Exclude .py files within .venv directory
-.venv/*.py
